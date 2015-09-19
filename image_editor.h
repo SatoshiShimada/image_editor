@@ -1,30 +1,49 @@
 
 #include <QMainWindow>
 #include <QApplication>
+#include <QPushButton>
 #include <QLabel>
 #include <QMenu>
+#include <QComboBox>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 class ImageEditor : public QMainWindow 
 {
-  Q_OBJECT
+	Q_OBJECT
 
- public:
-  ImageEditor();
+public:
+	ImageEditor();
 
-  private slots:
-    void open();
+private slots:
+	void open();
 
- private:
-    void createMenus();
-    void updateActions();
-    void createActions();
+private:
+	void createMenus();
+	void updateActions();
+	void createActions();
 
-    QLabel *imageLabelBefore;
-    QLabel *imageLabelAfter;
+	QWidget *window;
 
-    QAction *openAct;
-    QAction *exitAct;
+	QVBoxLayout *windowLayout;
+	QHBoxLayout *imageLayout;
+	QHBoxLayout *toolLayout;
 
-    QMenu *fileMenu;
-    QMenu *helpMenu;
+	QPushButton *execButton;
+	QPushButton *loadButton;
+	QPushButton *saveButton;
+	QPushButton *undoButton;
+
+	QComboBox *filterBox;
+
+	QLabel *filterLabel;
+	QLabel *imageLabelBefore;
+	QLabel *imageLabelAfter;
+
+	QAction *openAct;
+	QAction *exitAct;
+
+	QMenu *fileMenu;
+	QMenu *helpMenu;
 };

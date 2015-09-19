@@ -4,16 +4,49 @@
 
 ImageEditor::ImageEditor()
 {
+	window = new QWidget;
+
   imageLabelBefore = new QLabel;
   imageLabelBefore->setBackgroundRole(QPalette::Base);
-  imageLabelBefore->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-  imageLabelBefore->setScaledContents(true);
+  //imageLabelBefore->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+  imageLabelBefore->setScaledContents(false);
   imageLabelAfter  = new QLabel;
   imageLabelAfter ->setBackgroundRole(QPalette::Base);
-  imageLabelAfter ->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+  //imageLabelAfter ->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
   imageLabelAfter ->setScaledContents(true);
+  filterLabel = new QLabel(tr("Filter: "));
 
-  setCentralWidget(imageLabelBefore);
+  execButton = new QPushButton(tr("Execute"));
+  loadButton = new QPushButton(tr("Load"));
+  saveButton = new QPushButton(tr("Save"));
+  undoButton = new QPushButton(tr("Undo"));
+
+  filterBox = new QComboBox;
+  filterBox->addItem(tr("-- select --"));
+  filterBox->addItem(tr("Sobel"));
+  filterBox->addItem(tr("RGB to Gray"));
+  filterBox->addItem(tr("Threshold"));
+  filterBox->addItem(tr("Median"));
+
+  windowLayout = new QVBoxLayout;
+  imageLayout  = new QHBoxLayout;
+  toolLayout   = new QHBoxLayout;
+
+  imageLayout->addWidget(imageLabelBefore);
+  imageLayout->addWidget(imageLabelAfter);
+
+  toolLayout->addWidget(filterLabel);
+  toolLayout->addWidget(filterBox);
+  toolLayout->addWidget(execButton);
+  toolLayout->addWidget(loadButton);
+  toolLayout->addWidget(saveButton);
+  toolLayout->addWidget(undoButton);
+
+  windowLayout->addLayout(toolLayout);
+  windowLayout->addLayout(imageLayout);
+  window->setLayout(windowLayout);
+  setCentralWidget(window);
+
   createActions();
   createMenus();
 
