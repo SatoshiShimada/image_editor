@@ -25,6 +25,7 @@ private slots:
 	void execFilter();
 	void saveFile();
 	void setOutFileName();
+	void load();
 
 private:
 	ImageProcessing *imageP;

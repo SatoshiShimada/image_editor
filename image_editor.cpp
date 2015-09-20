@@ -67,9 +67,8 @@ ImageEditor::ImageEditor()
 	resize(500, 400);
 }
 
-void ImageEditor::open()
+void ImageEditor::load()
 {
-	inFileName = QFileDialog::getOpenFileName(this, tr("Open File"));
 	if(!inFileName.isEmpty()) {
 		QImage image(inFileName);
 		if(image.isNull()) {
@@ -82,6 +81,12 @@ void ImageEditor::open()
 		char *fileNameAscii = ba.data();
 		imageP = new ImageProcessing(fileNameAscii);
 	}
+}
+
+void ImageEditor::open()
+{
+	inFileName = QFileDialog::getOpenFileName(this, tr("Open File"));
+	load();
 }
 
 void ImageEditor::save()
@@ -170,6 +175,7 @@ void ImageEditor::createMenus()
 void ImageEditor::setSignals()
 {
 	connect(execButton, SIGNAL(clicked()), this, SLOT(execFilter()));
+	connect(loadButton, SIGNAL(clicked()), this, SLOT(load()));
 	connect(saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
 	connect(outFileNameSetButton, SIGNAL(clicked()), this, SLOT(setOutFileName()));
 }
