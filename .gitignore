@@ -3,5 +3,7 @@
 *~
 *.swp
 moc_*
-image_editor
 *.png
+image_editor
+Makefile
+ja.ts
