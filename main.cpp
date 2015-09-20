@@ -5,15 +5,15 @@
 
 int main(int argc, char *argv[])
 {
-  QApplication app(argc, argv);
+	QApplication app(argc, argv);
 
-  ImageEditor imageEditor;
+	ImageEditor imageEditor;
 
 #if defined(Q_OS_SYMBIAN)
-  imageViweer.showMaximized();
+	imageViweer.showMaximized();
 #else
-  imageEditor.show();
+	imageEditor.show();
 #endif
 
-  return app.exec();
+	return app.exec();
 }

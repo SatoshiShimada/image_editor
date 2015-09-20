@@ -1,0 +1,7 @@
+RGB2GRAY
+GRAY2RGB
+Threshold
+Median
+Sobel
+Openning
+Closing

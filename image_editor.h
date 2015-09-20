@@ -8,6 +8,9 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QLineEdit>
+
+#include "image_processing.h"
 
 class ImageEditor : public QMainWindow 
 {
@@ -18,22 +21,34 @@ public:
 
 private slots:
 	void open();
+	void save();
+	void execFilter();
+	void saveFile();
+	void setOutFileName();
 
 private:
+	ImageProcessing *imageP;
+
 	void createMenus();
 	void updateActions();
 	void createActions();
+	void setSignals();
 
 	QWidget *window;
 
 	QVBoxLayout *windowLayout;
 	QHBoxLayout *imageLayout;
 	QHBoxLayout *toolLayout;
+	QHBoxLayout *infoLayout;
+	QVBoxLayout *topLayout;
 
 	QPushButton *execButton;
 	QPushButton *loadButton;
 	QPushButton *saveButton;
 	QPushButton *undoButton;
+	QPushButton *outFileNameSetButton;
+
+	QLineEdit *fileNameEdit;
 
 	QComboBox *filterBox;
 
@@ -41,7 +56,11 @@ private:
 	QLabel *imageLabelBefore;
 	QLabel *imageLabelAfter;
 
+	QString inFileName;
+	QString outFileName;
+
 	QAction *openAct;
+	QAction *saveAct;
 	QAction *exitAct;
 
 	QMenu *fileMenu;
