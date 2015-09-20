@@ -5,16 +5,62 @@
 
 ImageEditor::ImageEditor()
 {
-	window = new QWidget;
+	window    = new QWidget;
+	imageArea = new QWidget;
+	general   = new QWidget;
+	rgb2gray  = new QWidget;
+	threshold = new QWidget;
 
+	toolTab = new QTabWidget;
+
+	windowLayout = new QVBoxLayout;
+	imageLayout  = new QHBoxLayout;
+	toolLayout   = new QHBoxLayout;
+	infoLayout   = new QHBoxLayout;
+	topLayout    = new QVBoxLayout;
+
+	createImageArea();
+	createGeneralTab();
+	createRgb2GrayTab();
+	createThresholdTab();
+
+	imageLayout->addWidget(imageLabelBefore);
+	imageLayout->addWidget(imageLabelAfter);
+	imageArea->setLayout(imageLayout);
+
+	// tab append
+	toolTab->addTab(general, tr("General"));
+	toolTab->addTab(rgb2gray, tr("RGB to GRAY"));
+	toolTab->addTab(threshold, tr("threshold"));
+
+	windowLayout->addWidget(toolTab);
+	windowLayout->addWidget(imageArea);
+	window->setLayout(windowLayout);
+	setCentralWidget(window);
+
+	setSignals();
+	createActions();
+	createMenus();
+
+	setWindowTitle(tr("Image Editor"));
+	//resize(400, 300);
+}
+
+void ImageEditor::createImageArea()
+{
+	// create image area
 	imageLabelBefore = new QLabel;
 	imageLabelBefore->setBackgroundRole(QPalette::Base);
-	imageLabelBefore->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+	//imageLabelBefore->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	imageLabelBefore->setScaledContents(false);
 	imageLabelAfter  = new QLabel;
 	imageLabelAfter ->setBackgroundRole(QPalette::Base);
 	imageLabelAfter ->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 	imageLabelAfter ->setScaledContents(false);
+}
+
+void ImageEditor::createGeneralTab()
+{
 	filterLabel = new QLabel(tr("Filter: "));
 
 	execButton = new QPushButton(tr("Execute"));
@@ -31,16 +77,6 @@ ImageEditor::ImageEditor()
 	filterBox->addItem(tr("RGB to Gray"));
 	filterBox->addItem(tr("Threshold"));
 	filterBox->addItem(tr("Median"));
-
-	windowLayout = new QVBoxLayout;
-	imageLayout  = new QHBoxLayout;
-	toolLayout   = new QHBoxLayout;
-	infoLayout   = new QHBoxLayout;
-	topLayout    = new QVBoxLayout;
-
-	imageLayout->addWidget(imageLabelBefore);
-	imageLayout->addWidget(imageLabelAfter);
-
 	toolLayout->addWidget(filterLabel);
 	toolLayout->addWidget(filterBox);
 	toolLayout->addWidget(execButton);
@@ -54,17 +90,29 @@ ImageEditor::ImageEditor()
 	topLayout->addLayout(toolLayout);
 	topLayout->addLayout(infoLayout);
 
-	windowLayout->addLayout(topLayout);
-	windowLayout->addLayout(imageLayout);
-	window->setLayout(windowLayout);
-	setCentralWidget(window);
+	general->setLayout(topLayout);
+}
 
-	setSignals();
-	createActions();
-	createMenus();
+void ImageEditor::createRgb2GrayTab()
+{
+}
 
-	setWindowTitle(tr("Image Editor"));
-	resize(500, 400);
+void ImageEditor::createThresholdTab()
+{
+	//thresholdTypeLabel = new QLabel(tr("Threshold Type:"));
+	thresholdTypeLabel = new QLabel(tr("閾値の決め方"));
+	thresholdTypeBox   = new QComboBox;
+
+	thresholdTypeBox->addItem(tr("固定"));
+	thresholdTypeBox->addItem(tr("モード法"));
+	thresholdTypeBox->addItem(tr("判別分布法"));
+	thresholdTypeBox->addItem(tr("動的閾値法"));
+
+	thresholdLayout = new QGridLayout;
+	thresholdLayout->addWidget(thresholdTypeLabel, 0, 0);
+	thresholdLayout->addWidget(thresholdTypeBox, 0, 1);
+
+	threshold->setLayout(thresholdLayout);
 }
 
 void ImageEditor::load()

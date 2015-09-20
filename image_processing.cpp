@@ -19,6 +19,7 @@ ImageProcessing::ImageProcessing(char *filename)
 	} else {
 		f_isGray = false;
 	}
+	tmpFileName = "tmp.png";
 }
 
 void ImageProcessing::setFileName(char *f)
@@ -37,6 +38,7 @@ int ImageProcessing::save(const char *filename)
 		cvCvtColor(dst_img_gray, dst_img, CV_GRAY2BGR);
 	}
 	cvSaveImage(filename, dst_img);
+	return 0;
 }
 /*
  * return: 0 success
