@@ -5,7 +5,7 @@ Using: Qt4, OpenCV
 
 -----
 
-![画面イメージ](./pictures/Snapshot.png)
+![画面イメージ](https://raw.github.com/wiki/SatoshiShimada/image_editor/images/Snapshot.png)
 * image\_processing  
 画像処理
 
