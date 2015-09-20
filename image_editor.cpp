@@ -31,9 +31,10 @@ ImageEditor::ImageEditor()
 	// tab append
 	toolTab->addTab(general, tr("General"));
 	toolTab->addTab(rgb2gray, tr("RGB to GRAY"));
-	toolTab->addTab(threshold, tr("threshold"));
+	toolTab->addTab(threshold, tr("Threshold"));
 
 	windowLayout->addWidget(toolTab);
+	windowLayout->addStretch();
 	windowLayout->addWidget(imageArea);
 	window->setLayout(windowLayout);
 	setCentralWidget(window);
@@ -100,17 +101,26 @@ void ImageEditor::createRgb2GrayTab()
 void ImageEditor::createThresholdTab()
 {
 	//thresholdTypeLabel = new QLabel(tr("Threshold Type:"));
-	thresholdTypeLabel = new QLabel(tr("閾値の決め方"));
-	thresholdTypeBox   = new QComboBox;
+	thresholdTypeLabel  = new QLabel(tr("Threshold Type:"));
+	thresholdValueLabel = new QLabel(tr("Threshold Value:"));
+	thresholdTypeBox    = new QComboBox;
+	thresholdValueBox   = new QSpinBox;
+	thresholdExecButton = new QPushButton(tr("Execute"));
 
-	thresholdTypeBox->addItem(tr("固定"));
-	thresholdTypeBox->addItem(tr("モード法"));
-	thresholdTypeBox->addItem(tr("判別分布法"));
-	thresholdTypeBox->addItem(tr("動的閾値法"));
+	thresholdTypeBox->addItem(tr("Static"));
+	thresholdTypeBox->addItem(tr("Mode"));
+	thresholdTypeBox->addItem(tr("discrim"));
+	thresholdTypeBox->addItem(tr("Dynamic"));
+
+	thresholdValueBox->setMaximum(255);
+	thresholdValueBox->setMinimum(0);
 
 	thresholdLayout = new QGridLayout;
-	thresholdLayout->addWidget(thresholdTypeLabel, 0, 0);
+	thresholdLayout->addWidget(thresholdTypeLabel, 0, 0, Qt::AlignRight);
 	thresholdLayout->addWidget(thresholdTypeBox, 0, 1);
+	thresholdLayout->addWidget(thresholdValueLabel, 1, 0, Qt::AlignRight);
+	thresholdLayout->addWidget(thresholdValueBox, 1, 1);
+	thresholdLayout->addWidget(thresholdExecButton, 2, 0);
 
 	threshold->setLayout(thresholdLayout);
 }

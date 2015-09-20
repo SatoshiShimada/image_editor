@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <QTabWidget>
+#include <QSpinBox>
 
 #include "image_processing.h"
 
@@ -60,8 +61,11 @@ private:
 	QPushButton *saveButton;
 	QPushButton *undoButton;
 	QPushButton *outFileNameSetButton;
+	QPushButton *thresholdExecButton;
 
 	QLineEdit *fileNameEdit;
+
+	QSpinBox *thresholdValueBox;
 
 	QComboBox *filterBox;
 	QComboBox *thresholdTypeBox;
@@ -70,6 +74,7 @@ private:
 	QLabel *imageLabelBefore;
 	QLabel *imageLabelAfter;
 	QLabel *thresholdTypeLabel;
+	QLabel *thresholdValueLabel;
 
 	QString inFileName;
 	QString outFileName;
