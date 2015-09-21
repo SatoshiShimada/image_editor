@@ -5,6 +5,8 @@
 
 ImageEditor::ImageEditor()
 {
+	f_isOpenFile = false;
+
 	window    = new QWidget;
 	imageArea = new QWidget;
 	general   = new QWidget;
@@ -99,7 +101,6 @@ void ImageEditor::createRgb2GrayTab()
 
 void ImageEditor::createThresholdTab()
 {
-	//thresholdTypeLabel = new QLabel(tr("Threshold Type:"));
 	thresholdTypeLabel  = new QLabel(tr("Threshold Type:"));
 	thresholdValueLabel = new QLabel(tr("Threshold Value:"));
 	thresholdTypeBox    = new QComboBox;
@@ -137,6 +138,7 @@ void ImageEditor::load()
 		QByteArray ba = inFileName.toAscii();
 		char *fileNameAscii = ba.data();
 		imageP = new ImageProcessing(fileNameAscii);
+		f_isOpenFile = true;
 	}
 }
 
@@ -172,10 +174,18 @@ void ImageEditor::setOutFileName()
 
 void ImageEditor::thresholdExec()
 {
+	if(!f_isOpenFile)
+		return;
 	int thresh = thresholdValueBox->value();
 	if(thresh < 0 || 255 < thresh)
 		return;
-	imageP->Threshold(thresh);
+	QString str = thresholdTypeBox->currentText();
+	if(str == tr("Static")) {
+		imageP->Threshold(thresh);
+	} else if(str == tr("Mode")) {
+	} else if(str == tr("Discrim")) {
+	} else if(str == tr("Dynamic")) {
+	}
 	imageP->save(imageP->tmpFileName);
 	QImage image(imageP->tmpFileName);
 	if(image.isNull()) return;
@@ -190,7 +200,7 @@ void ImageEditor::execFilter()
 		QMessageBox::information(this, tr("Image Editor"), tr("Select filter!"));
 		return;
 	}
-	if(inFileName.isEmpty()) {
+	if(inFileName.isEmpty() || !f_isOpenFile) {
 		QMessageBox::information(this, tr("Image Editor"), tr("Select image!"));
 		return;
 	}
@@ -251,3 +261,4 @@ void ImageEditor::setSignals()
 	// Threshold tab
 	connect(thresholdExecButton, SIGNAL(clicked()), this, SLOT(thresholdExec()));
 }
+

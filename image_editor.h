@@ -32,6 +32,7 @@ private slots:
 
 private:
 	ImageProcessing *imageP;
+	bool f_isOpenFile;
 
 	void createMenus();
 	void createActions();
