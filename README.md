@@ -10,4 +10,5 @@ Using: Qt4, OpenCV
 画像処理
 
 * image\_editor  
-GUI
+GUI  
+Qt

@@ -28,6 +28,7 @@ private slots:
 	void saveFile();
 	void setOutFileName();
 	void load();
+	void thresholdExec();
 
 private:
 	ImageProcessing *imageP;

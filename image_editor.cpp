@@ -49,15 +49,14 @@ ImageEditor::ImageEditor()
 
 void ImageEditor::createImageArea()
 {
-	// create image area
 	imageLabelBefore = new QLabel;
 	imageLabelBefore->setBackgroundRole(QPalette::Base);
-	//imageLabelBefore->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	imageLabelBefore->setScaledContents(false);
+	imageLabelBefore->setMinimumSize(320, 240);
+	imageLabelBefore->setScaledContents(true);
 	imageLabelAfter  = new QLabel;
 	imageLabelAfter ->setBackgroundRole(QPalette::Base);
-	imageLabelAfter ->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	imageLabelAfter ->setScaledContents(false);
+	imageLabelAfter->setMinimumSize(320, 240);
+	imageLabelAfter ->setScaledContents(true);
 }
 
 void ImageEditor::createGeneralTab()
@@ -171,6 +170,18 @@ void ImageEditor::setOutFileName()
 	imageP->setFileName(fn);
 }
 
+void ImageEditor::thresholdExec()
+{
+	int thresh = thresholdValueBox->value();
+	if(thresh < 0 || 255 < thresh)
+		return;
+	imageP->Threshold(thresh);
+	imageP->save(imageP->tmpFileName);
+	QImage image(imageP->tmpFileName);
+	if(image.isNull()) return;
+	imageLabelAfter->setPixmap(QPixmap::fromImage(image));
+}
+
 void ImageEditor::execFilter()
 {
 	QString str = filterBox->currentText();
@@ -232,8 +243,11 @@ void ImageEditor::createMenus()
 
 void ImageEditor::setSignals()
 {
+	// General tab
 	connect(execButton, SIGNAL(clicked()), this, SLOT(execFilter()));
 	connect(loadButton, SIGNAL(clicked()), this, SLOT(load()));
 	connect(saveButton, SIGNAL(clicked()), this, SLOT(saveFile()));
 	connect(outFileNameSetButton, SIGNAL(clicked()), this, SLOT(setOutFileName()));
+	// Threshold tab
+	connect(thresholdExecButton, SIGNAL(clicked()), this, SLOT(thresholdExec()));
 }

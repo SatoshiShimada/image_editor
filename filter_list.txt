@@ -1,0 +1,33 @@
+Color Convert
+	RGB to GRAY
+	GRAY to RGB
+	RGB to HSV
+	RGB to YCbCr
+Threshold
+	Static
+	Mode
+	Discrim
+	Dynamic
+Histgram
+	Histgram
+	Histgram smooth
+Gradient
+	difference
+	Sobel
+	Roberts
+	Prewitt
+	Zero cross
+Thinning
+Hough
+	Hough line
+	Hough circle
+Smooth
+	Smooth
+	Smooth_weighted
+	Median
+	Smooth edge preserve
+	Laplacian of Gaussian (Log filter)
+Dilation
+Erosion
+	Openning
+	Closing

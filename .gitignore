@@ -4,6 +4,5 @@
 *.swp
 moc_*
 *.png
+*.ts
 image_editor
-Makefile
-ja.ts
