@@ -12,6 +12,11 @@ ImageEditor::ImageEditor()
 	general   = new QWidget;
 	rgb2gray  = new QWidget;
 	threshold = new QWidget;
+	histgram  = new QWidget;
+	gradient  = new QWidget;
+	thinning  = new QWidget;
+	hough     = new QWidget;
+	smooth    = new QWidget;
 
 	toolTab = new QTabWidget;
 
@@ -25,19 +30,26 @@ ImageEditor::ImageEditor()
 	createGeneralTab();
 	createRgb2GrayTab();
 	createThresholdTab();
-
-	imageLayout->addWidget(imageLabelBefore);
-	imageLayout->addWidget(imageLabelAfter);
-	imageArea->setLayout(imageLayout);
+	createHistgramTab();
+	createGradientTab();
+	createThinningTab();
+	createHoughTab();
+	createSmoothTab();
 
 	// tab append
 	toolTab->addTab(general, tr("General"));
 	toolTab->addTab(rgb2gray, tr("RGB to GRAY"));
 	toolTab->addTab(threshold, tr("Threshold"));
+	toolTab->addTab(histgram, tr("Histgram"));
+	toolTab->addTab(gradient, tr("Gradient"));
+	toolTab->addTab(thinning, tr("Thinning"));
+	toolTab->addTab(hough, tr("Hough"));
+	toolTab->addTab(smooth, tr("Smooth"));
 
 	windowLayout->addWidget(toolTab);
 	windowLayout->addStretch();
-	windowLayout->addWidget(imageArea);
+	//windowLayout->addWidget(imageArea);
+	windowLayout->addWidget(imageGroup);
 	window->setLayout(windowLayout);
 	setCentralWidget(window);
 
@@ -51,6 +63,7 @@ ImageEditor::ImageEditor()
 
 void ImageEditor::createImageArea()
 {
+	imageGroup = new QGroupBox(tr("Image view"));
 	imageLabelBefore = new QLabel;
 	imageLabelBefore->setBackgroundRole(QPalette::Base);
 	imageLabelBefore->setMinimumSize(320, 240);
@@ -59,6 +72,11 @@ void ImageEditor::createImageArea()
 	imageLabelAfter ->setBackgroundRole(QPalette::Base);
 	imageLabelAfter->setMinimumSize(320, 240);
 	imageLabelAfter ->setScaledContents(true);
+
+	imageLayout->addWidget(imageLabelBefore);
+	imageLayout->addWidget(imageLabelAfter);
+	imageGroup->setLayout(imageLayout);
+	//imageArea->setLayout(imageLayout);
 }
 
 void ImageEditor::createGeneralTab()
@@ -123,6 +141,26 @@ void ImageEditor::createThresholdTab()
 	thresholdLayout->addWidget(thresholdExecButton, 2, 0);
 
 	threshold->setLayout(thresholdLayout);
+}
+
+void ImageEditor::createHistgramTab()
+{
+}
+
+void ImageEditor::createGradientTab()
+{
+}
+
+void ImageEditor::createThinningTab()
+{
+}
+
+void ImageEditor::createHoughTab()
+{
+}
+
+void ImageEditor::createSmoothTab()
+{
 }
 
 void ImageEditor::load()

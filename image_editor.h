@@ -11,6 +11,7 @@
 #include <QLineEdit>
 #include <QTabWidget>
 #include <QSpinBox>
+#include <QGroupBox>
 
 #include "image_processing.h"
 
@@ -40,6 +41,11 @@ private:
 	void createGeneralTab();
 	void createRgb2GrayTab();
 	void createThresholdTab();
+	void createHistgramTab();
+	void createGradientTab();
+	void createThinningTab();
+	void createHoughTab();
+	void createSmoothTab();
 	void updateActions();
 	void setSignals();
 
@@ -48,8 +54,15 @@ private:
 	QWidget *general;
 	QWidget *rgb2gray;
 	QWidget *threshold;
+	QWidget *histgram;
+	QWidget *gradient;
+	QWidget *thinning;
+	QWidget *hough;
+	QWidget *smooth;
 
 	QTabWidget *toolTab;
+
+	QGroupBox *imageGroup;
 
 	QVBoxLayout *windowLayout;
 	QHBoxLayout *imageLayout;

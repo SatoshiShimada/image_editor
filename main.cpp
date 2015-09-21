@@ -8,10 +8,12 @@ int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
+#if 0
 	// Translator
 	QTranslator trans;
 	trans.load("ja.qm", qApp->applicationDirPath());
 	app.installTranslator(&trans);
+#endif
 
 	ImageEditor imageEditor;
 
