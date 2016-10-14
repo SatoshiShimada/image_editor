@@ -1,4 +1,13 @@
 
+/*
+ * The Image Processing class for Image Editor.
+ * Using OpenCV.
+ *
+ * Author: Satoshi SHIMADA
+ * Date: Sep 20, 2015
+ * Last-update: Oct 14, 2016
+ */
+
 #include "cv.h"
 #include "highgui.h"
 #include "ctype.h"
@@ -28,3 +37,4 @@ public:
 
 	const char *tmpFileName;
 };
+

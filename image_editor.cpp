@@ -1,4 +1,12 @@
 
+/*
+ * Graphical user interface program for Image Editor.
+ *
+ * Author: Satoshi SHIMADA
+ * Date: Sep 19, 2015
+ * Last-update: Oct 14, 2016
+ */
+
 #include <QtGui>
 #include "image_editor.h"
 #include <iostream>

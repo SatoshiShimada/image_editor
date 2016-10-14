@@ -1,4 +1,13 @@
 
+/*
+ * Graphical user interface program for Image Editor.
+ * Using Qt4.
+ *
+ * Author: Satoshi SHIMADA
+ * Date: Sep 19, 2015
+ * Last-update: Oct 14, 2016
+ */
+
 #include <QMainWindow>
 #include <QApplication>
 #include <QPushButton>
@@ -101,3 +110,4 @@ private:
 	QMenu *fileMenu;
 	QMenu *helpMenu;
 };
+

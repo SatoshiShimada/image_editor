@@ -1,4 +1,12 @@
 
+/*
+ * The Image Processing class for Image Editor.
+ *
+ * Author: Satoshi SHIMADA
+ * Date: Sep 20, 2015
+ * Last-update: Oct 14, 2016
+ */
+
 #include "cv.h"
 #include "highgui.h"
 #include "ctype.h"
@@ -40,6 +48,7 @@ int ImageProcessing::save(const char *filename)
 	cvSaveImage(filename, dst_img);
 	return 0;
 }
+
 /*
  * return: 0 success
  *        -1 input image data error(need rgb image)
@@ -71,3 +80,4 @@ int ImageProcessing::Threshold(int thresh)
 	cvThreshold(src_img_gray, dst_img_gray, thresh, 255, CV_THRESH_BINARY);
 	return 0;
 }
+

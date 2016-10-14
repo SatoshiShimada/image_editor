@@ -3,13 +3,13 @@ Color Convert
 	GRAY to RGB
 	RGB to HSV
 	RGB to YCbCr
-Threshold
+Threshold method
 	Static
 	Mode
 	Discrim
 	Dynamic
 Histgram
-	Histgram
+	show Histgram
 	Histgram smooth
 Gradient
 	difference
